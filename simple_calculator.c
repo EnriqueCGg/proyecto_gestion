@@ -6,7 +6,11 @@ int main(){
     printf("Simple calculator. Enter two numbers like 'a b': " );
     scanf("%f %f", &a, &b);
     printf("Select the opration: \n");
-    printf("1. Sum\n2. Substraction\n5. Multiplication\n4. Division\n");
+    printf("1. Sum\n");
+    printf("2. Substraction\n");
+    printf("3. Multiplication\n"); 
+    printf("4. Division\n"); 
+
     scanf("%d", &selection);
 
     if (selection == 1){
