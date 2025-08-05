@@ -95,7 +95,7 @@ void verEncuestados(struct Encuestado encuestados[], int cantidad_personas){
     }
 }
 
-//Evalua las estidisticas
+//Evalua las estadisticas
 void mostrarEstadisticas(struct Encuestado encuestados[], int cantidad) {
     int suma_calificaciones = 0;
     int rango_1 = 0, rango_2 = 0, rango_3 = 0, rango_4 = 0;
@@ -117,6 +117,7 @@ void mostrarEstadisticas(struct Encuestado encuestados[], int cantidad) {
         else conteo_O++;
     }
 
+    //sacar los calculos de los promedios
     float promedio = (float)suma_calificaciones / cantidad;
     float porc_M = 100.0 * conteo_M / cantidad;
     float porc_F = 100.0 * conteo_F / cantidad;
@@ -145,6 +146,7 @@ void buscarPorNombre(struct Encuestado encuestados[], int cantidad) {
 
     printf("\n%-3s %-15s %-5s %-7s %-17s %-s\n", "#", "Nombre", "Edad", "Genero", "Calif. Servicio", "Comentarios");
 
+    //Si encuentra un numbre lo imprimer en formato de tabla
     for (int i = 0; i < cantidad; i++) {
         if (strcmp(encuestados[i].nombre, nombre) == 0) {
             printf("%-3d %-15s %-5d %-7c %-17d %-s\n",
@@ -162,6 +164,7 @@ void buscarPorNombre(struct Encuestado encuestados[], int cantidad) {
     }
 }
 
+//codigo principal
 int main() {
     struct Encuestado encuestados[100]; //100 es el numero maximo de reviews
     int cantidad_personas = 80; //80 datos generados aleatoriamente
