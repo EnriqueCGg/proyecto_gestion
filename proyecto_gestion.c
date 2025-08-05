@@ -164,6 +164,31 @@ void buscarPorNombre(struct Encuestado encuestados[], int cantidad) {
     }
 }
 
+void exportarCSV(struct Encuestado encuestados[], int cantidad) {
+    FILE *archivo = fopen("encuestados.csv", "w");
+
+    if (archivo == NULL) {
+        printf("No se pudo crear el archivo CSV.\n");
+        return;
+    }
+
+    // Escribir encabezados
+    fprintf(archivo, "Nombre,Edad,Genero,Calificacion,Comentarios\n");
+
+    // Escribir datos
+    for (int i = 0; i < cantidad; i++) {
+        fprintf(archivo, "\"%s\",%d,%c,%d,\"%s\"\n",
+                encuestados[i].nombre,
+                encuestados[i].edad,
+                encuestados[i].genero,
+                encuestados[i].calificacion_servicio,
+                encuestados[i].comentarios);
+    }
+
+    fclose(archivo);
+    printf("Datos exportados correctamente a encuestados.csv\n");
+}
+
 //codigo principal
 int main() {
     struct Encuestado encuestados[100]; //100 es el numero maximo de reviews
@@ -178,7 +203,8 @@ int main() {
         printf("2. Ver todos los encuestados\n");
         printf("3. Ver estadisticas generales\n");
         printf("4. Buscar por nombre\n");
-        printf("5. Salir\n");
+        printf("5. Exportar a CSV\n");
+        printf("6. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -201,12 +227,15 @@ int main() {
                 buscarPorNombre(encuestados, cantidad_personas);
                 break;
             case 5:
+                exportarCSV(encuestados, cantidad_personas);
+                break;
+            case 6:
                 printf("Saliendo...\n");
                 break;
             default:
                 printf("Opcion invalida. Intente de nuevo.\n");
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return 0;
 }
